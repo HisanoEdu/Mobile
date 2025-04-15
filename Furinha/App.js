@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar, Image } from 'react-native';
-import { AntDesign } from '@expo/vector-icons'; 
-
+import { StyleSheet, Text, View, StatusBar, Image, ScrollView } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 
 function MinhasCredenciais({ githubUser }) {
   return (
@@ -14,9 +13,20 @@ function MinhasCredenciais({ githubUser }) {
           borderRadius: 20,
         }}
         source={{
-          uri: `https://github.com/${githubUser}.png`, 
+          uri: `https://github.com/${githubUser}.png`,
         }}
       />
+      
+      <Image
+        style={{
+          width: 200,
+          height: 200,
+        }}
+        source={{
+          uri: `https://github.com/${githubUser}.png`,
+        }}
+      />
+
       <AntDesign name="hearto" size={24} color="black" />
     </View>
   );
@@ -28,9 +38,11 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {githubUsers.map((githubUser) => (
-        <MinhasCredenciais key={githubUser} githubUser={githubUser} />
-      ))}
+      <ScrollView>
+        {githubUsers.map((githubUser) => (
+          <MinhasCredenciais key={githubUser} githubUser={githubUser} />
+        ))}
+      </ScrollView>
       <StatusBar style="auto" />
     </View>
   );
@@ -40,7 +52,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    // alignItems: 'center',  // Uncomment if you want to center content
-    // justifyContent: 'center',  // Uncomment if you want to center content
   },
 });
